@@ -23,8 +23,8 @@ Concepts
 
 `system`: In this case, a system operates on the data in components.
 
-Detail
-------
+Details
+++++++
 
 Right now, `ecs` defines a few core core classes:
 
