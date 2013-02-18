@@ -27,7 +27,7 @@ class SystemManager(object):
 		self.entity_manager = entity_manager
 		self._systems = []
 		
-	def addSystem(self, system_instance, priority=0):
+	def add_system(self, system_instance, priority=0):
 		"""
 		Adds a System instance to the manager.  It will be updated according to 
 		the priority given, lower numbers first.
@@ -41,7 +41,7 @@ class SystemManager(object):
 		self._systems.append(system_instance)
 		self._systems.sort(key=lambda s: s.priority)
 		
-	def removeSystem(self, system_type):
+	def remove_system(self, system_type):
 		"""
 		Removes a System instance of type system_type from the manager.
 		"""
@@ -50,7 +50,7 @@ class SystemManager(object):
 				self._systems.remove(s)
 				return
 		
-	def updateSystems(self, dt):
+	def update_systems(self, dt):
 		"""
 		Updates each system, in the order of their priority.
 		"""

@@ -32,7 +32,7 @@ class EntityManager(object):
 		self.database = {}
 		self.lowest_guid = 0
 		
-	def newEntity(self):
+	def new_entity(self):
 		"""
 		Returns a new entity instance with the current lowest guid value.
 		
@@ -44,7 +44,7 @@ class EntityManager(object):
 		self.lowest_guid += 1
 		return new_e
 		
-	def addComponent(self, entity_id, component_instance):
+	def add_component(self, entity_id, component_instance):
 		"""
 		Adds a component to the database and associates it with the given entity_id.
 		
@@ -56,7 +56,7 @@ class EntityManager(object):
 			
 		self.database[main_key][entity_id] = component_instance
 		
-	def removeComponent(self, entity_id, component_type):
+	def remove_component(self, entity_id, component_type):
 		"""
 		Removes the component of component_type associated with entity_id from the database.
 		
@@ -66,13 +66,12 @@ class EntityManager(object):
 		"""
 		try:
 			del self.database[component_type][entity_id]
+			if self.database[component_type] == {}:
+				del self.database[component_type]
 		except KeyError:
 			pass
 		
-		if self.database[component_type] == {}:
-			del self.database[component_type]
-		
-	def getPairsForType(self, component_type):
+	def pairs_for_type(self, component_type):
 		"""
 		Returns a list of (entity_id, component_instance) tuples for all entities in the database
 		possessing a component of component_type.
@@ -84,7 +83,7 @@ class EntityManager(object):
 		except KeyError:
 			return None
 		
-	def getComponentForEntity(self, entity_id, component_type):
+	def component_for_entity(self, entity_id, component_type):
 		"""
 		Returns the instance of component_type for the entity_id from the database.
 		
@@ -95,7 +94,7 @@ class EntityManager(object):
 		except KeyError:
 			return None
 	
-	def deleteEntity(self, entity_id):
+	def delete_entity(self, entity_id):
 		"""
 		Removes all components from the database that are associated with entity_id,
 		with the side-effect that the entity is also no longer in the database.
