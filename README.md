@@ -13,8 +13,8 @@ The module is called `ecs`.  `ces` is too close to something else, and while the
 
 As this module is in somewhat rarefied air, with not a lot of company, the concepts and API will change often during development.  Inspiration is taken from the Ash entity framework for AS3.
 
-Concepts
---------
+### Concepts
+
 `ecs` stands for entity, component, AND system.  The system part is just as important as the component and entity part.  So what are these?
 
 `entity`: Simply a unique identifier, used to label components as belonging to a logical grouping.
@@ -23,17 +23,18 @@ Concepts
 
 `system`: In this case, a system operates on the data in components.
 
-Details
-++++++
+### Details
+
 
 Right now, `ecs` defines a few core core classes:
 
-`Entity
+```
+Entity
 EntityManager
 Component
 System
 SystemManager
-`
+```
 
 The EntityManager is a database that stores Components, referenced by their type and entity id.
 
