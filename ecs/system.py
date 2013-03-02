@@ -9,7 +9,7 @@ class System(object):
 		self.sys_man = None
 		self.priority = 0 # just a placeholder for the system-manager to do what it will
 		
-	def update(dt, entity_manager):
+	def update(self, dt, entity_manager):
 		"""
 		Called by the system manager.  Here is where the functionality of the system is
 		implemented.

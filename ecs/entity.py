@@ -20,7 +20,7 @@ class Entity(object):
 		return self.__guid_
 	
 	def __eq__(self, other):
-		return self.__guid_ == other.__guid_
+		return self.__guid_ == hash(other)
 	
 	
 	
