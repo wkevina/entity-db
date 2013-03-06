@@ -1,5 +1,4 @@
 """
-
 Contains definitions for the basic Entity and EntityManager types.
 
 """
@@ -9,6 +8,7 @@ import component
 class Entity(object):
 	"""
 	Encapsulates a guid to use in the entity database.
+	
 	"""
 	def __init__(self, guid):
 		self.__guid_ = guid
@@ -27,6 +27,7 @@ class Entity(object):
 class EntityManager(object):
 	"""
 	Provides database-like access to components based on an entity_id key.
+	
 	"""
 	def __init__(self):
 		self.database = {}
@@ -38,6 +39,7 @@ class EntityManager(object):
 		
 		Does not store a reference to it, and does not make any entries in the database
 		referencing it.
+		
 		"""
 		
 		new_e = Entity(self.lowest_guid)
@@ -49,6 +51,7 @@ class EntityManager(object):
 		Adds a component to the database and associates it with the given entity_id.
 		
 		entity_id can be an Entity object or a plain integer.
+		
 		"""
 		main_key = type(component_instance)
 		if main_key not in self.database:
@@ -63,6 +66,7 @@ class EntityManager(object):
 		Doesn't do any kind of data-teardown.  It is up to the system calling this code to do that.
 		
 		In the future a callback system may be used to implement type-specific destructors.
+		
 		"""
 		try:
 			del self.database[component_type][entity_id]
@@ -77,6 +81,7 @@ class EntityManager(object):
 		possessing a component of component_type.
 		
 		Returns None if there are no components of this type in the database.
+		
 		"""
 		try:
 			return self.database[component_type].items()
@@ -88,6 +93,7 @@ class EntityManager(object):
 		Returns the instance of component_type for the entity_id from the database.
 		
 		Returns None if the entity does not have that component.
+		
 		"""
 		try:
 			return self.database[component_type][entity_id]
@@ -98,12 +104,13 @@ class EntityManager(object):
 		"""
 		Removes all components from the database that are associated with entity_id,
 		with the side-effect that the entity is also no longer in the database.
+		
 		"""
 		for comp_type in self.database.iterkeys():
 			try:
 				del self.database[comp_type][entity_id]
 				if self.database[comp_type] == {}:
 					del self.database[comp_type]
-			except:
+			except KeyError:
 				pass
 		
